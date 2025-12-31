@@ -16,15 +16,7 @@ const useAuthStore = create((set) => ({
     })),
 
   logout: async () => {
-    // Only call logout API if user was logged in and backend is available
-    if (useAuthStore.getState().isLoggedIn) {
-      try {
-        await logout_user();
-      } catch (err) {
-        // Silently fail if backend is not available
-        console.warn("Backend not available for logout");
-      }
-    }
+    if (useAuthStore.getState().isLoggedIn) await logout_user();
 
     set(() => ({
       isAuthReady: true,

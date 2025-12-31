@@ -39,7 +39,14 @@ app.use("/", redirector_route);
 
 app.use(errorHandler);
 
-const port = process.env.PORT || 8080;
-app.listen(port, () => {
-  console.log("Server is running on port : ", port);
-});
+// Export app for Vercel serverless functions
+export default app;
+
+// Only start server if not in Vercel environment
+// Vercel sets VERCEL=1 automatically
+if (!process.env.VERCEL) {
+  const port = process.env.PORT || 8080;
+  app.listen(port, () => {
+    console.log("Server is running on port : ", port);
+  });
+}
