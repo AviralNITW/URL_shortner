@@ -5,6 +5,7 @@ import UrlTable from "../components/Dashboard/UrlTable";
 import Pagination from "../components/Dashboard/Pagination";
 import QuickStats from "../components/Dashboard/QuickStats";
 import useAuthStore from "../stores/auth.store";
+import { getBackendUrl } from "../utils/backend-url.util";
 
 const Dashboard = () => {
   const urls = useAuthStore((state) => state.urls);
@@ -16,7 +17,7 @@ const Dashboard = () => {
   const urlsPerPage = 10;
 
   const handleCopy = (shortUrl) => {
-    navigator.clipboard.writeText(`${import.meta.env.VITE_BACKEND_URL + shortUrl}`);
+    navigator.clipboard.writeText(`${getBackendUrl() + shortUrl}`);
     setCopiedUrl(shortUrl);
     setTimeout(() => setCopiedUrl(null), 2000);
   };

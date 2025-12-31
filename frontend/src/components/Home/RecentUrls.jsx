@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { FiArrowRight, FiCopy } from "react-icons/fi";
 
 import useAuthStore from "../../stores/auth.store";
+import { getBackendUrl } from "../../utils/backend-url.util";
 
 const RecentUrls = () => {
   const urls = useAuthStore((state) => state.urls);
@@ -37,11 +38,11 @@ const RecentUrls = () => {
                         rel="noopener noreferrer"
                         className="text-xs font-medium text-gray-500 hover:text-gray-900"
                       >
-                        {import.meta.env.VITE_BACKEND_URL + url.short_url}
+                        {getBackendUrl() + url.short_url}
                       </a>
                       <button
                         onClick={() =>
-                          navigator.clipboard.writeText(`${import.meta.env.VITE_BACKEND_URL + url.short_url}`)
+                          navigator.clipboard.writeText(`${getBackendUrl() + url.short_url}`)
                         }
                         className="ml-2 text-gray-400 hover:text-gray-500"
                         title="Copy to clipboard"

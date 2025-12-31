@@ -1,4 +1,5 @@
 import { FiExternalLink, FiCopy, FiBarChart2, FiTrash2 } from "react-icons/fi";
+import { getBackendUrl } from "../../utils/backend-url.util";
 
 const UrlTable = ({
   urls,
@@ -106,12 +107,12 @@ const UrlTable = ({
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-blue-600 flex items-center">
                       <a
-                        href={`${import.meta.env.VITE_BACKEND_URL + url.short_url}`}
+                        href={`${getBackendUrl() + url.short_url}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-blue-800 mr-2"
                       >
-                        {import.meta.env.VITE_BACKEND_URL + url.short_url}
+                        {getBackendUrl() + url.short_url}
                       </a>
                       <button
                         onClick={() => handleCopy(url.short_url)}

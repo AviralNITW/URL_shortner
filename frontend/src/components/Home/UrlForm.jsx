@@ -35,7 +35,7 @@ const UrlForm = () => {
       try {
         const url_data = await get_short_url(value.long_url, value.short_url);
         const generated_short_url = url_data.short_url;
-        setShortUrl(`${import.meta.env.VITE_BACKEND_URL + generated_short_url}`);
+        setShortUrl(`${getBackendUrl() + generated_short_url}`);
         addUrl(url_data);
         setCopied(false);
       } catch (error) {
@@ -98,7 +98,7 @@ const UrlForm = () => {
                 </label>
                 <div className="flex rounded-md shadow-sm">
                   <span className="hidden sm:inline-flex items-center px-3 border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm rounded-l-md">
-                    {import.meta.env.VITE_BACKEND_URL}
+                    {getBackendUrl()}
                   </span>
                   <input
                     type="text"

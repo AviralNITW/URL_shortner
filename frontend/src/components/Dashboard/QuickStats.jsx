@@ -15,7 +15,7 @@ const QuickStats = ({ urls }) => {
           <h3 className="text-sm font-medium text-purple-800">Most Popular</h3>
           <p className="mt-1 text-sm font-medium text-purple-600 truncate">
             {urls.length > 0
-              ? `${import.meta.env.VITE_BACKEND_URL + urls.reduce((prev, current) => (prev.clicks > current.clicks ? prev : current)).short_url}`
+              ? `${getBackendUrl() + urls.reduce((prev, current) => (prev.clicks > current.clicks ? prev : current)).short_url}`
               : "N/A"}
           </p>
         </div>
