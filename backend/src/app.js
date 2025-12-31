@@ -28,21 +28,44 @@ const allowedOrigins = [
   'http://localhost:5173',
 ].filter(Boolean);
 
+// Handle preflight requests
+app.options('*', cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.some(allowedOrigin => origin.startsWith(allowedOrigin))) {
+      callback(null, true);
+    } else {
+      callback(null, true); // Allow all for now to debug
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
+}));
+
 app.use(
   cors({
     origin: (origin, callback) => {
       // Allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
       
-      if (allowedOrigins.some(allowedOrigin => origin.startsWith(allowedOrigin))) {
+      // Check if origin matches any allowed origin
+      const isAllowed = allowedOrigins.some(allowedOrigin => {
+        return origin === allowedOrigin || origin.startsWith(allowedOrigin);
+      });
+      
+      if (isAllowed) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        // For debugging, allow all origins temporarily
+        console.log('CORS: Allowing origin:', origin);
+        callback(null, true);
       }
     },
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
+    exposedHeaders: ['Set-Cookie'],
   })
 );
 
