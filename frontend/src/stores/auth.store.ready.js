@@ -11,7 +11,9 @@ const readyAuthStore = async () => {
     const { user, urls } = await refresh_user();
     login(user, urls);
   } catch (err) {
-    await logout();
+    // Silently fail if backend is not available (not deployed yet)
+    // Just mark auth as ready and user as not logged in
+    useAuthStore.getState().logout();
   }
 };
 
