@@ -31,8 +31,10 @@ A simple and secure full-stack URL shortener built with modern technologies.
 
 ## 🌐 Deployment
 
-- **Frontend**: Deployed on Vercel.
-- **Backend**: Deployed on Vercel/Render.
+- **Frontend**: Deployed on [GitHub Pages](https://aviralnitw.github.io/URL_shortner/)
+- **Backend**: Deployed on Render or Vercel
+
+📖 **Full deployment guide**: See [DEPLOYMENT_COMPLETE.md](./DEPLOYMENT_COMPLETE.md) for step-by-step instructions.
 
 ## 🛠️ Setup & Installation
 
@@ -90,7 +92,10 @@ A simple and secure full-stack URL shortener built with modern technologies.
 
 ## 🔗 Live Demo
 
-Experience the live application here: https://url-shortener-by-ankit.vercel.app
+- **Frontend**: [https://aviralnitw.github.io/URL_shortner/](https://aviralnitw.github.io/URL_shortner/)
+- **Backend API**: Deploy to Render or Vercel (see [DEPLOYMENT_COMPLETE.md](./DEPLOYMENT_COMPLETE.md))
+
+> **Note**: Update the backend URL in GitHub Secrets after deploying the backend to connect frontend and backend.
 
 ## Future Improvements / To-Do
 
