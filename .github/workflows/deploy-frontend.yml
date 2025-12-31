@@ -37,8 +37,8 @@ jobs:
         working-directory: ./frontend
         run: npm run build
         env:
-          VITE_BACKEND_API_URL: ${{ secrets.VITE_BACKEND_API_URL }}
-          VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
+          VITE_BACKEND_API_URL: ${{ secrets.VITE_BACKEND_API_URL || 'https://url-shortener-backend-git-main-aviral-mishras-projects-ff8b4a3b.vercel.app/api/v1' }}
+          VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL || 'https://url-shortener-backend-git-main-aviral-mishras-projects-ff8b4a3b.vercel.app/' }}
           NODE_ENV: production
 
       - name: Setup Pages
