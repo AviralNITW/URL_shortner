@@ -5,14 +5,17 @@ import { homepageRoute } from "./homepage.route.js";
 import { dashboardRoute } from "./dashboard.route.js";
 import { aboutRoute } from "./about.route.js";
 import readyAuthStore from "../stores/auth.store.ready.js";
+import NotFoundPage from "../pages/NotFoundPage.jsx";
 
 export const rootRoute = createRootRoute({
   component: RootLayout,
   beforeLoad: () => readyAuthStore(),
+  notFoundComponent: NotFoundPage,
 });
 
 rootRoute.addChildren([authRoute, homepageRoute, dashboardRoute, aboutRoute]);
 
 export const router = createRouter({
   routeTree: rootRoute,
+  defaultNotFoundComponent: NotFoundPage,
 });
