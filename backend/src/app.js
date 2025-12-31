@@ -20,12 +20,32 @@ dotenv.config();
 
 app.use(express.json({ limit: process.env.LIMIT }));
 app.use(urlencoded({ extended: true, limit: process.env.LIMIT }));
+
+// CORS configuration - allow GitHub Pages origin
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  'https://aviralnitw.github.io',
+  'http://localhost:5173',
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.some(allowedOrigin => origin.startsWith(allowedOrigin))) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
+
 app.use(cookieParser());
 
 // connection to database before starting the services
