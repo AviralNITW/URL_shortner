@@ -6,6 +6,7 @@ import { FiCopy, FiArrowRight, FiExternalLink } from "react-icons/fi";
 
 import useAuthStore from "../../stores/auth.store";
 import { get_short_url } from "../../api/short_url.api";
+import { getBackendUrl } from "../../utils/backend-url.util";
 
 const urlSchema = z.object({
   long_url: z.string().url("Invalid URL format"),
